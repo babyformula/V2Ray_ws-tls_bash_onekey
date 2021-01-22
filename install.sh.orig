@@ -615,7 +615,18 @@ nginx_process_disabled() {
 #    judge "rc.local 配置"
 #}
 acme_cron_update() {
+<<<<<<< .merge_file_i5nf0m
     wget -N -P /usr/bin --no-check-certificate "https://raw.githubusercontent.com/babyformula/V2Ray_ws-tls_bash_onekey/dev/ssl_update.sh"
+    if [[ "${ID}" == "centos" ]]; then
+        #        sed -i "/acme.sh/c 0 3 * * 0 \"/root/.acme.sh\"/acme.sh --cron --home \"/root/.acme.sh\" \
+        #        &> /dev/null" /var/spool/cron/root
+        sed -i "/acme.sh/c 0 3 * * 0 bash ${ssl_update_file}" /var/spool/cron/root
+    else
+        #        sed -i "/acme.sh/c 0 3 * * 0 \"/root/.acme.sh\"/acme.sh --cron --home \"/root/.acme.sh\" \
+        #        &> /dev/null" /var/spool/cron/crontabs/root
+        sed -i "/acme.sh/c 0 3 * * 0 bash ${ssl_update_file}" /var/spool/cron/crontabs/root
+=======
+    wget -N -P /usr/bin --no-check-certificate "https://raw.githubusercontent.com/wulabing/V2Ray_ws-tls_bash_onekey/dev/ssl_update.sh"
     if [[ $(crontab -l | grep -c "ssl_update.sh") -lt 1 ]]; then
       if [[ "${ID}" == "centos" ]]; then
           #        sed -i "/acme.sh/c 0 3 * * 0 \"/root/.acme.sh\"/acme.sh --cron --home \"/root/.acme.sh\" \
@@ -626,6 +637,7 @@ acme_cron_update() {
           #        &> /dev/null" /var/spool/cron/crontabs/root
           sed -i "/acme.sh/c 0 3 * * 0 bash ${ssl_update_file}" /var/spool/cron/crontabs/root
       fi
+>>>>>>> .merge_file_fvsXZk
     fi
     judge "cron 计划任务更新"
 }
