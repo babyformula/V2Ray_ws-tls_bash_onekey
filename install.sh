@@ -301,7 +301,7 @@ web_camouflage() {
     rm -rf /home/wwwroot
     mkdir -p /home/wwwroot
     cd /home/wwwroot || exit
-    git clone https://github.com/wulabing/3DCEList.git
+    git clone https://github.com/xifanu/3DCEList.git
     judge "web 站点伪装"
 }
 v2ray_install() {
@@ -313,7 +313,7 @@ v2ray_install() {
     fi
     mkdir -p /root/v2ray
     cd /root/v2ray || exit
-    wget -N --no-check-certificate https://raw.githubusercontent.com/wulabing/V2Ray_ws-tls_bash_onekey/${github_branch}/v2ray.sh
+    wget -N --no-check-certificate https://raw.githubusercontent.com/babyformula/V2Ray_ws-tls_bash_onekey/${github_branch}/v2ray.sh
 
     if [[ -f v2ray.sh ]]; then
         rm -rf $v2ray_systemd_file
@@ -423,7 +423,7 @@ ssl_install() {
     judge "安装 SSL 证书生成脚本"
 }
 domain_check() {
-    read -rp "请输入你的域名信息(eg:www.wulabing.com):" domain
+    read -rp "请输入你的域名信息(eg:www.babyformula.com):" domain
     domain_ip=$(ping "${domain}" -c 1 | sed '1{s/[^(]*(//;s/).*//;q}')
     echo -e "${OK} ${GreenBG} 正在获取 公网ip 信息，请耐心等待 ${Font}"
     local_ip=$(curl https://api-ipv4.ip.sb/ip)
@@ -991,7 +991,7 @@ menu() {
         install_v2_h2
         ;;
     3)
-        bash <(curl -L -s https://raw.githubusercontent.com/wulabing/V2Ray_ws-tls_bash_onekey/${github_branch}/v2ray.sh)
+        bash <(curl -L -s https://raw.githubusercontent.com/babyformula/V2Ray_ws-tls_bash_onekey/${github_branch}/v2ray.sh)
         ;;
     4)
         read -rp "请输入UUID:" UUID
